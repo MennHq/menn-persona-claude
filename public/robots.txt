@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://menn.netlify.app/sitemap.xml

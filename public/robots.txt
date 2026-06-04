@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://menn.vercel.app/sitemap.xml
+Sitemap: https://mennhq.vercel.app/sitemap.xml

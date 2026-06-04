@@ -24,7 +24,7 @@
 
 @layer base {
   body {
-    @apply bg-bg text-white font-sans antialiased select-none;
+    @apply bg-bg text-white font-sans antialiased;
   }
   input, textarea {
     @apply select-text;

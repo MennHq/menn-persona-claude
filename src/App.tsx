@@ -136,6 +136,8 @@ export default function App() {
   const [showPassword, setShowPassword] = useState(false);
   const [adminTab, setAdminTab] = useState<'content' | 'settings'>('content');
   const [maintenanceMode, setMaintenanceMode] = useState(false);
+  const [showPrivacyModal, setShowPrivacyModal] = useState(false);
+  const [showTermsModal, setShowTermsModal] = useState(false);
   
   const lenisRef = useRef<Lenis | null>(null);
 
@@ -170,45 +172,12 @@ export default function App() {
           setShowAdminPanel(true);
         }
       }
-
-      // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, Ctrl+Shift+C for non-admins
-      if (!isAdmin) {
-        if (
-          e.key === 'F12' ||
-          (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) ||
-          (e.ctrlKey && (e.key === 'U' || e.key === 'u'))
-        ) {
-          e.preventDefault();
-        }
-      }
     };
-
-    const handleContextMenu = (e: MouseEvent) => {
-      if (!isAdmin) e.preventDefault();
-    };
-
-    // Deter devtools usage for non-admins
-    let devtoolsDetector: any;
-    if (!isAdmin) {
-      devtoolsDetector = setInterval(() => {
-        const startTime = performance.now();
-        debugger;
-        const endTime = performance.now();
-        if (endTime - startTime > 100) {
-          console.clear();
-          console.log("%cSTOP!", "color: red; font-size: 40px; font-weight: bold;");
-          console.log("%cThis is a developer feature. If someone told you to copy-paste something here, it is a scam.", "font-size: 16px;");
-        }
-      }, 1000);
-    }
 
     window.addEventListener('keydown', handleKeyDown);
-    window.addEventListener('contextmenu', handleContextMenu);
     
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
-      window.removeEventListener('contextmenu', handleContextMenu);
-      if (devtoolsDetector) clearInterval(devtoolsDetector);
     };
   }, [isAdmin]);
 
@@ -620,14 +589,151 @@ export default function App() {
           </div>
           <div className="text-center md:text-left flex flex-col items-center md:items-start gap-1">
             <div>{content.footer.copyright}</div>
-            <div className="text-[8px] opacity-50">Last Updated: {new Date(content.lastUpdated).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</div>
           </div>
           <div className="flex gap-8">
-            <a href="#" className="hover:opacity-100">Privacy</a>
-            <a href="#" className="hover:opacity-100">Terms</a>
+            <button 
+              onClick={() => setShowPrivacyModal(true)} 
+              className="hover:opacity-100 cursor-pointer transition-opacity uppercase tracking-widest text-[10px] bg-transparent border-none text-white font-sans outline-none"
+            >
+              Privacy
+            </button>
+            <button 
+              onClick={() => setShowTermsModal(true)} 
+              className="hover:opacity-100 cursor-pointer transition-opacity uppercase tracking-widest text-[10px] bg-transparent border-none text-white font-sans outline-none"
+            >
+              Terms
+            </button>
           </div>
         </div>
       </footer>
+
+      {/* Privacy Policy Modal */}
+      <AnimatePresence>
+        {showPrivacyModal && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[300] bg-black/95 backdrop-blur-xl flex items-center justify-center p-6"
+          >
+            <motion.div 
+              initial={{ scale: 0.95, y: 15 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.95, y: 15 }}
+              transition={{ type: 'spring', duration: 0.4 }}
+              className="w-full max-w-2xl bg-zinc-900 border border-white/10 rounded-3xl p-8 flex flex-col max-h-[85vh] shadow-2xl overflow-hidden"
+            >
+              <div className="flex justify-between items-center pb-4 border-b border-white/5 mb-6">
+                <div>
+                  <h2 className="text-xl font-serif text-white uppercase tracking-wider">Privacy Policy</h2>
+                  <p className="text-[10px] text-white/30 uppercase tracking-widest mt-1">MennHq Network</p>
+                </div>
+                <button 
+                  onClick={() => setShowPrivacyModal(false)}
+                  className="p-2 hover:bg-white/5 rounded-full text-white/45 hover:text-white transition-colors cursor-pointer"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+              <div className="flex-1 overflow-y-auto pr-2 space-y-6 text-sm text-white/70 font-sans leading-relaxed select-text no-scrollbar">
+                <p className="text-[10px] opacity-40 uppercase tracking-widest">Effective Date: June 4, 2026</p>
+                
+                <section className="space-y-2">
+                  <h3 className="font-serif text-white tracking-wide text-lg">1. Introduction</h3>
+                  <p>Welcome to <strong>MennHq</strong> (accessible via <a href="https://mennhq.vercel.app" className="underline hover:text-white text-white/90">mennhq.vercel.app</a>), the official platform representing <strong>Menn</strong> (also known as <strong>Menn Maestro</strong> / <strong>Menn Hq</strong>). We value your trust and are fully committed to protecting your online privacy.</p>
+                </section>
+
+                <section className="space-y-2">
+                  <h3 className="font-serif text-white tracking-wide text-lg">2. Information We Collect</h3>
+                  <p>As a personal digital display and portfolio, <strong>MennHq</strong> does not actively collect, sell, or process personal identifying information (PII). We do not set tracking, marketing, or behavioral cookies. Any information sent to us through official contact emails (<a href="mailto:MennHq@gmail.com" className="underline hover:text-white text-white/90">MennHq@gmail.com</a>) or verified profile links remains entirely private and is exclusively used to answer your messages.</p>
+                </section>
+
+                <section className="space-y-2">
+                  <h3 className="font-serif text-white tracking-wide text-lg">3. Data Security</h3>
+                  <p>The security of the <strong>Menn Maestro</strong> platform and system is of paramount importance to us. We regularly review our integration channels, disable unused dependencies, and cooperate with premium secure cloud infrastructures (like Vercel and secure CDN layers) to deliver top-tier stability and protect our public site code.</p>
+                </section>
+
+                <section className="space-y-2">
+                  <h3 className="font-serif text-white tracking-wide text-lg">4. Outbound Links</h3>
+                  <p>Our website features connections to global networks, third-party social services, and other product pages. <strong>MennHq</strong> does not control these destination providers. We strongly recommend reading the respective policies of any external links you choose to click.</p>
+                </section>
+
+                <section className="space-y-2">
+                  <h3 className="font-serif text-white tracking-wide text-lg">5. Future Updates</h3>
+                  <p>We reserves the right to review and update this Privacy Policy statement in order to stay compliant with standard global frameworks. All changes will become active on this page immediately upon deployment.</p>
+                </section>
+
+                <section className="space-y-2 pb-4">
+                  <h3 className="font-serif text-white tracking-wide text-lg">6. Contact Information</h3>
+                  <p>For inquiries, feedback, or matters related to privacy under the <strong>Menn</strong> identity, please connect with us:</p>
+                  <p className="text-white font-medium mt-1">Official Address: <a href="mailto:MennHq@gmail.com" className="underline text-white hover:opacity-80">MennHq@gmail.com</a></p>
+                </section>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Terms of Service Modal */}
+      <AnimatePresence>
+        {showTermsModal && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[300] bg-black/95 backdrop-blur-xl flex items-center justify-center p-6"
+          >
+            <motion.div 
+              initial={{ scale: 0.95, y: 15 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.95, y: 15 }}
+              transition={{ type: 'spring', duration: 0.4 }}
+              className="w-full max-w-2xl bg-zinc-900 border border-white/10 rounded-3xl p-8 flex flex-col max-h-[85vh] shadow-2xl overflow-hidden"
+            >
+              <div className="flex justify-between items-center pb-4 border-b border-white/5 mb-6">
+                <div>
+                  <h2 className="text-xl font-serif text-white uppercase tracking-wider">Terms of Service</h2>
+                  <p className="text-[10px] text-white/30 uppercase tracking-widest mt-1">MennHq Licensing Agreement</p>
+                </div>
+                <button 
+                  onClick={() => setShowTermsModal(false)}
+                  className="p-2 hover:bg-white/5 rounded-full text-white/45 hover:text-white transition-colors cursor-pointer"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+              <div className="flex-1 overflow-y-auto pr-2 space-y-6 text-sm text-white/70 font-sans leading-relaxed select-text no-scrollbar">
+                <p className="text-[10px] opacity-40 uppercase tracking-widest">Effective Date: June 4, 2026</p>
+                
+                <section className="space-y-2">
+                  <h3 className="font-serif text-white tracking-wide text-lg">1. Acceptance of Terms</h3>
+                  <p>By entering and using the site <strong>MennHq</strong> (accessible via <a href="https://mennhq.vercel.app" className="underline hover:text-white text-white/90">mennhq.vercel.app</a>), you fully consent to keep all binding guidelines outlined in our Terms of Service. If you do not agree with these principles, your permission to navigate the site is immediately revoked.</p>
+                </section>
+
+                <section className="space-y-2">
+                  <h3 className="font-serif text-white tracking-wide text-lg">2. Intellectual Ownership</h3>
+                  <p>All digital products, original UI workflows, vector design assets, typography layouts, code, screenshots, and visual branding concepts published under the <strong>Menn</strong> / <strong>Menn Maestro</strong> brand are the exclusive property of <strong>Menn Hq</strong>. No materials, assets, or descriptions may be duplicated, scraped, repurposed, or resold without our explicit, written prior legal consent.</p>
+                </section>
+
+                <section className="space-y-2">
+                  <h3 className="font-serif text-white tracking-wide text-lg">3. Disclaimer and Limitations of liability</h3>
+                  <p>The materials, showcases, and downloads on <strong>MennHq</strong> are provided strictly on an "as is" and "as available" basis. <strong>Menn</strong> provides no warranties, direct or implied. We shall under no circumstances be held responsible for system interruptions, errors, or files fetched outside our verified domains.</p>
+                </section>
+
+                <section className="space-y-2">
+                  <h3 className="font-serif text-white tracking-wide text-lg">4. User Conduct</h3>
+                  <p>Visitors are expected to act reasonably and respectfully. Automated harvesting scripts, bots, unauthorized penetration testing, attempts to bypass the console system, or launching malicious actions against our servers or visitors is strictly prohibited and subject to legal actions.</p>
+                </section>
+
+                <section className="space-y-2 pb-4">
+                  <h3 className="font-serif text-white tracking-wide text-lg">5. Governing Jurisdiction</h3>
+                  <p>These terms represent the entire agreement between the visitor and <strong>MennHq</strong>. Any disputes related to the contents of <strong>Menn Maestro</strong> shall be governed by standard electronic information protection laws without regard to conflict of law principles.</p>
+                </section>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Admin Login Modal */}
       <AnimatePresence>

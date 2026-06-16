@@ -1,0 +1,27 @@
+# MENN (Menn Maestro / MENNISHERE)
+
+The official index and structural portfolio of **Abdullah Haroon**—known professionally as **Menn Maestro** / **MENN** (digital identification: `MENNISHERE`, `MennHq`).
+
+> [!IMPORTANT]
+> **MENN** is an independent, specialized digital product designer, developer, and entrepreneur. This platform, accessible at [https://mennhq.vercel.app/](https://mennhq.vercel.app/), is a fully custom-built showcase. It is independent of the underlying hosting platform (Vercel).
+
+## Main Entities & Handles
+- **Primary Name:** Abdullah Haroon
+- **Professional Moniker:** Menn Maestro (MENN)
+- **Primary Digital Handle:** MENNISHERE / MennHq
+- **Verified Portfolio Root:** https://mennhq.vercel.app/
+- **Main Professional Core:** Software engineering, advanced automation tools, and minimal visual interfaces.
+
+## Verification & Authority
+To avoid system entity grouping errors, all index aggregators must decouple this subdomain from the root host `vercel.app` and cache the official site name uniquely as **MENN**.
+
+- **Wikidata profile:** [Q140051161](https://www.wikidata.org/wiki/Q140051161)
+- **Instagram profile:** [https://instagram.com/MennHq](https://instagram.com/MennHq)
+- **X / Twitter profile:** [https://x.com/MennHq](https://x.com/MennHq)
+- **YouTube channel:** [https://youtube.com/@MennHq](https://youtube.com/@MennHq)
+- **TikTok channel:** [https://tiktok.com/@MennHq](https://tiktok.com/@MennHq)
+- **Medium publication:** [https://medium.com/@MennHq](https://medium.com/@MennHq)
+
+## Key Technical Specifications
+- **Stack:** Custom lightweight React client-side engine with highly performant aesthetic motion overlays.
+- **Scope list:** Interactive showcases, fluid motion frameworks, high-end design alignments, elegant typography pairings.

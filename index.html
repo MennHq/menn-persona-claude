@@ -9,6 +9,7 @@
     <meta name="robots" content="index, follow" />
     
     <!-- Open Graph / Facebook -->
+    <meta property="og:site_name" content="MENN" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://mennhq.vercel.app/" />
     <meta property="og:title" content="Menn | Menn Maestro | MennHq — Digital Creator" />
@@ -30,26 +31,41 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Abdullah Haroon",
-      "additionalName": "Menn Maestro",
-      "alternateName": ["Menn", "MennHq", "Menn Hq", "MennMaestro", "mennhq"],
-      "url": "https://mennhq.vercel.app/",
-      "description": "Digital product creator and entrepreneur based in Pakistan, specialized in software development and automation tools.",
-      "jobTitle": "Digital Product Creator & Entrepreneur",
-      "sameAs": [
-        "https://www.wikidata.org/wiki/Q140051161",
-        "https://instagram.com/MennHq",
-        "https://x.com/MennHq",
-        "https://youtube.com/@MennHq",
-        "https://tiktok.com/@MennHq",
-        "https://medium.com/@MennHq"
-      ],
-      "knowsAbout": [
-        "Software Development",
-        "Automation Tools",
-        "Digital Product Design",
-        "Entrepreneurship"
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://mennhq.vercel.app/#website",
+          "url": "https://mennhq.vercel.app/",
+          "name": "MENN",
+          "alternateName": ["Menn Maestro", "MENNISHERE", "MennHq"],
+          "publisher": {
+            "@id": "https://mennhq.vercel.app/#person"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://mennhq.vercel.app/#person",
+          "name": "Abdullah Haroon",
+          "additionalName": "Menn Maestro",
+          "alternateName": ["MENN", "MennHq", "Menn Hq", "MennMaestro", "mennhq", "MENNISHERE"],
+          "url": "https://mennhq.vercel.app/",
+          "description": "Digital product creator and entrepreneur based in Pakistan, specialized in software development and automation tools.",
+          "jobTitle": "Digital Product Creator & Entrepreneur",
+          "sameAs": [
+            "https://www.wikidata.org/wiki/Q140051161",
+            "https://instagram.com/MennHq",
+            "https://x.com/MennHq",
+            "https://youtube.com/@MennHq",
+            "https://tiktok.com/@MennHq",
+            "https://medium.com/@MennHq"
+          ],
+          "knowsAbout": [
+            "Software Development",
+            "Automation Tools",
+            "Digital Product Design",
+            "Entrepreneurship"
+          ]
+        }
       ]
     }
     </script>

@@ -2,4 +2,5 @@ User-agent: *
 Allow: /
 
 Sitemap: https://mennhq.vercel.app/sitemap.xml
+Sitemap: https://mennhq.vercel.app/sitemap_index.xml
 LLMs-txt: https://mennhq.vercel.app/llms.txt

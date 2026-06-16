@@ -2,7 +2,7 @@
   "cleanUrls": true,
   "rewrites": [
     {
-      "source": "/((?!api/|robots\\.txt|sitemap\\.xml|llms\\.txt|google612658a234746882\\.html|assets/|.*\\.[a-zA-Z0-9]+$).*)",
+      "source": "/((?!api/|robots\\.txt|sitemap\\.xml|sitemap_index\\.xml|llms\\.txt|google612658a234746882\\.html|assets/|.*\\.[a-zA-Z0-9]+$).*)",
       "destination": "/index.html"
     }
   ]
